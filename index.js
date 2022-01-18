@@ -35,6 +35,21 @@ app.get("/productsTable",(req,res)=>{
         res.send('Table has been created');
     })
 })
+app.get("/productsTable2",(req,res)=>{
+    let sql = 'CREATE TABLE products2(id int AUTO_INCREMENT, category_id int ,product_name VARCHAR(45), product_price int, product_serial_number VARCHAR(45),  PRIMARY KEY (id), FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE CASCADE)'
+    db.query(sql, (err,result)=>{
+        if(err)throw err;
+        res.send('Table has been created');
+    })
+})
+app.post("/productsTable2",(req,res)=>{
+    let post = {category_id : req.body.id, product_name: req.body.name, product_price: req.body.price, product_serial_number: req.body.serial};
+    let sql = 'INSERT INTO products2 SET ?'
+    db.query(sql,post,(err,result)=>{
+        if(err)throw err;
+        res.send(`${post.product_name} has added`);
+    })
+})
 
 app.post("/productsTable",(req,res)=>{
         let post = {category_id : req.body.id, product_name: req.body.name, product_price: req.body.price, product_serial_number: req.body.serial};
@@ -109,6 +124,30 @@ app.get("/productsDesc",(req,res)=>{
     })
 })
 
+app.get("/categories/:id",(req,res)=>{
+    let sql = `SELECT * FROM categories WHERE id=${req.params.id}`;
+    db.query(sql,(err,result)=>{
+        if(err)throw err;
+        res.send(result);
+    })
+})
+app.get("/productName/:name",(req,res)=>{
+   
+    
+    let sql = `SELECT * FROM products WHERE product_name  ="${req.params.name}"`
+    db.query(sql,(err,result)=>{
+        if(err)throw err;
+        res.send(result);
+    })
+})
+
+app.delete("/deleteProduct/:id",(req,res)=>{
+    let sql = `DELETE FROM products2 WHERE id = ${req.params.id}`
+    db.query(sql,(err,result)=>{
+        if(err)throw err;
+        res.send("Delete sucessfully")
+    })
+})
 
 
 
