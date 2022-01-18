@@ -42,6 +42,20 @@ app.get("/productsTable2",(req,res)=>{
         res.send('Table has been created');
     })
 })
+app.get("/users",(req,res)=>{
+    let sql= 'CREATE TABLE users(id int AUTO_INCREMENT, user_name VARCHAR(45), user_email VARCHAR(45), PRIMARY KEY (id))'
+    db.query(sql, (err,result)=>{
+        if(err)throw err;
+        res.send('Table has been created');
+    })
+})
+app.get("/orders", (req,res)=>{
+    let sql = 'CREATE TABLE orders(id int AUTO_INCREMENT, user_id int,order_numb VARCHAR(45), PRIMARY KEY (id), FOREIGN KEY (user_id)  REFERENCES users(id) ON DELETE CASCADE)'
+    db.query(sql, (err,result)=>{
+        if(err)throw err;
+        res.send('Table has been created');
+    })
+})
 app.post("/productsTable2",(req,res)=>{
     let post = {category_id : req.body.id, product_name: req.body.name, product_price: req.body.price, product_serial_number: req.body.serial};
     let sql = 'INSERT INTO products2 SET ?'
