@@ -4,6 +4,7 @@ Exercises to practice endpoints with sql and express.
 
 ## What is inside ?
 There is more than 200 lines about endpoints using  CRUD(get,post,put,delete).
+I used diverse querys to add Tables to a database. 
 ```js
 app.get("/users",(req,res)=>{
     let sql= 'CREATE TABLE users(id int AUTO_INCREMENT, user_name VARCHAR(45), user_email VARCHAR(45), PRIMARY KEY (id))'
@@ -33,49 +34,6 @@ app.put("/users/:id", (req,res)=>{
     db.query(sql,(err,result)=>{
         if(err)throw err;
         res.send('User UPDATED')
-    })
-})
-app.get("/showUsers",(req,res)=>{
-    let sql = 'SELECT * FROM users';
-    db.query(sql,(err,result)=>{
-        if(err)throw err;
-        res.send(result)
-    })
-})
-app.get("/showOrders",(req,res)=>{
-    let sql = 'SELECT * FROM orders';
-    db.query(sql, (err,result)=>{
-        if(err)throw err;
-        res.send(result)
-    })
-})
-app.get("/ordersUSers",(req,res)=>{
-    let sql = 'SELECT * FROM orders INNER JOIN users ON user_id=users.id'
-    db.query(sql, (err,result)=>{
-        if(err)throw err;
-        res.send(result)
-    })
-})
-app.get("/users/:id", (req,res)=>{
-    let sql = `SELECT * FROM users WHERE id=${req.params.id}`
-    db.query(sql,(err,result)=>{
-        if(err)throw err;
-        res.send(result);
-    })
-})
-app.delete("/usersdelete/:id",(req,res)=>{
-    let sql = `DELETE FROM users WHERE id = ${req.params.id}`
-    db.query(sql,(err,result)=>{
-        if(err)throw err;
-        res.send("Delete sucessfully")
-    })
-})
-app.post("/orders", (req,res)=>{
-    let post= {user_id: req.body.user_id , order_numb : req.body.numb}
-    let sql= 'INSERT INTO orders SET ?';
-    db.query(sql,post,(err,result)=>{
-        if(err)throw err;
-        res.send(`${post.order_numb} has added`);
     })
 })
 ````
