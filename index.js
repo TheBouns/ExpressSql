@@ -72,6 +72,41 @@ app.put("/users/:id", (req,res)=>{
         res.send('User UPDATED')
     })
 })
+app.get("/showUsers",(req,res)=>{
+    let sql = 'SELECT * FROM users';
+    db.query(sql,(err,result)=>{
+        if(err)throw err;
+        res.send(result)
+    })
+})
+app.get("/showOrders",(req,res)=>{
+    let sql = 'SELECT * FROM orders';
+    db.query(sql, (err,result)=>{
+        if(err)throw err;
+        res.send(result)
+    })
+})
+app.get("/ordersUSers",(req,res)=>{
+    let sql = 'SELECT * FROM orders INNER JOIN users ON user_id=users.id'
+    db.query(sql, (err,result)=>{
+        if(err)throw err;
+        res.send(result)
+    })
+})
+app.get("/users/:id", (req,res)=>{
+    let sql = `SELECT * FROM users WHERE id=${req.params.id}`
+    db.query(sql,(err,result)=>{
+        if(err)throw err;
+        res.send(result);
+    })
+})
+app.delete("/usersdelete/:id",(req,res)=>{
+    let sql = `DELETE FROM users WHERE id = ${req.params.id}`
+    db.query(sql,(err,result)=>{
+        if(err)throw err;
+        res.send("Delete sucessfully")
+    })
+})
 app.post("/orders", (req,res)=>{
     let post= {user_id: req.body.user_id , order_numb : req.body.numb}
     let sql= 'INSERT INTO orders SET ?';
