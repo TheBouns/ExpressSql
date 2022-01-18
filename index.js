@@ -56,6 +56,31 @@ app.get("/orders", (req,res)=>{
         res.send('Table has been created');
     })
 })
+app.post("/users", (req,res)=>{
+    let post= {user_name: req.body.name , user_email : req.body.mail}
+    let sql= 'INSERT INTO users SET ?';
+    db.query(sql,post,(err,result)=>{
+        if(err)throw err;
+        res.send(`${post.user_name} has added`);
+    })
+})
+app.put("/users/:id", (req,res)=>{
+    let newName = req.body.name;
+    let sql = `UPDATE users SET user_name='${newName}' WHERE id=${req.params.id}`;
+    db.query(sql,(err,result)=>{
+        if(err)throw err;
+        res.send('User UPDATED')
+    })
+})
+app.post("/orders", (req,res)=>{
+    let post= {user_id: req.body.user_id , order_numb : req.body.numb}
+    let sql= 'INSERT INTO orders SET ?';
+    db.query(sql,post,(err,result)=>{
+        if(err)throw err;
+        res.send(`${post.order_numb} has added`);
+    })
+})
+
 app.post("/productsTable2",(req,res)=>{
     let post = {category_id : req.body.id, product_name: req.body.name, product_price: req.body.price, product_serial_number: req.body.serial};
     let sql = 'INSERT INTO products2 SET ?'
