@@ -4,7 +4,8 @@ Exercises to practice endpoints with sql and express.
 
 ## What is inside ?
 There is more than 200 lines about endpoints using  CRUD(get,post,put,delete).
-I used diverse querys to add Tables to a database. 
+I used diverse endpoint to add Tables to the database,eliminate rows,add rows,etc.
+Server is running in port 64000 just for fun. 
 ```js
 app.get("/users",(req,res)=>{
     let sql= 'CREATE TABLE users(id int AUTO_INCREMENT, user_name VARCHAR(45), user_email VARCHAR(45), PRIMARY KEY (id))'
