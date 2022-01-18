@@ -108,7 +108,7 @@ app.get("/productsDesc",(req,res)=>{
         res.send(result);
     })
 })
-
+let col=0;
 
 
 
