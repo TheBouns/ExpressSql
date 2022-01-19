@@ -10,7 +10,7 @@ This is a simple database developed with Node.js.
 ## Working on the project 👷‍♂️
 * Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
 * Run the project with : `npm run dev`
-    * Server runs at [localhost](https://localhost:65000)
+    * Server runs at [https://localhost:65000](https://localhost:65000)
     * Automatically restarts when any of your files change
 
 ## Databases 
