@@ -11,4 +11,4 @@ router.get("/search/:id", categoriesController.searchById);
 
 
 
-module.exports = categoriesController;
+module.exports = router;

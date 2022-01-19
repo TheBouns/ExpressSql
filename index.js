@@ -5,7 +5,7 @@ app.use(express.json());
 app.use("/products",require("./routes/products"));
 app.use("/orders", require("./routes/orders"))
 app.use("/users", require("./routes/users"))
-app.use("/categories"), require("./routes/categories")
+app.use("/categories", require("./routes/categories"));
 
 
 app.listen("65000", ()=>{

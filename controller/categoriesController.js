@@ -38,7 +38,7 @@ const categoriesController = {
       if (err) throw err;
       res.send(result);
     });
-  },
+  }
 };
 
 module.exports = categoriesController;
