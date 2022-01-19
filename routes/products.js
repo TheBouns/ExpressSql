@@ -11,7 +11,8 @@ router.get("/", productsController.show);
 router.get("/select/:id",productsController.selectById);
 router.get("/orderDesc",productsController.orderDesc);
 router.get("/:name",productsController.productName);
-router.delete("/delete/:id", productsController.delete)
+router.delete("/delete/:id", productsController.delete);
+router.get("/category",productsController.category)
 
 
 module.exports = router;

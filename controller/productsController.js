@@ -59,6 +59,13 @@ delete(req,res){
         if(err)throw err;
         res.send("Delete sucessfully")
     })
+},
+category(req,res){
+    let sql = 'SELECT * FROM products INNER JOIN categories ON category_id=categories.id'
+    db.query(sql,(err,result)=>{
+        if(err)throw err;
+        res.send(result);
+    })
 }
 };
 
